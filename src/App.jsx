@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Routes, Route, NavLink, Link, useLocation } from 'react-router-dom';
+import Home from './components/Home';
+import Pokemons from './components/Pokemons';
+import PokemonDetail from './components/PokemonDetail';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const location = useLocation();
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="App">
+      <nav className="navbar">
+        <div className="navbar-left">
+          <Link to="/">
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="map-icon" />
+          </Link>
+        </div>
+        <div className="navbar-right">
+          <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : '')}>
+            Home
+          </NavLink>
+          <NavLink
+            to="/pokemons"
+            className={location.pathname.includes('/pokemon') ? 'active' : ''}
+          >
+            Pokemons
+          </NavLink>
+        </div>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pokemons" element={<Pokemons />} />
+        <Route path="/pokemon/:name" element={<PokemonDetail />} />
+      </Routes>
+    </div>
+  );
+};
 
-export default App
+export default App;
+

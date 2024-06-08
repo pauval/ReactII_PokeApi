@@ -40,3 +40,53 @@
 .read-the-docs {
   color: #888;
 }
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: black;
+}
+
+nav a.active {
+  font-weight: bold;
+  color: red;
+}
+
+.small-img {
+  width: 200px;
+  height: auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.map-icon {
+  color: white;
+  font-size: 24px;
+  cursor: pointer; 
+}
+
+.navbar-right {
+  display: flex;
+}
+
+.navbar-right a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-right a.active {
+  font-weight: bold;
+  color: red;
+}
